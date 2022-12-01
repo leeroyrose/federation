@@ -40,7 +40,7 @@ const resolvers = {
       };
     },
   },
-  SearchResults: {
+  SearchResult: {
     __resolveType: (obj: { type: string }) => obj.type,
   },
 };

@@ -96,7 +96,7 @@ union SearchResponse
   @join__type(graph: SEARCH)
  = SearchSuccess | SearchError
 
-union SearchResults
+union SearchResult
   @join__type(graph: SEARCH)
  = Car | Article
 
@@ -104,5 +104,5 @@ type SearchSuccess
   @join__type(graph: SEARCH)
 {
   total: Int!
-  items: [SearchResults!]!
+  items: [SearchResult!]!
 }

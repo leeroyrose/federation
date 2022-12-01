@@ -10,11 +10,11 @@ type Article @key(fields: "id") {
     id: String!
 }
 
-union SearchResults = Car | Article
+union SearchResult = Car | Article
 
 type SearchSuccess {
     total: Int!
-    items: [SearchResults!]!
+    items: [SearchResult!]!
 }
 
 type SearchError {
