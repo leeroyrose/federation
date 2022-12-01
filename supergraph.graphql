@@ -1,0 +1,108 @@
+schema
+  @link(url: "https://specs.apollo.dev/link/v1.0")
+  @link(url: "https://specs.apollo.dev/join/v0.2", for: EXECUTION)
+{
+  query: Query
+}
+
+directive @join__field(graph: join__Graph!, requires: join__FieldSet, provides: join__FieldSet, type: String, external: Boolean, override: String, usedOverridden: Boolean) repeatable on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+
+directive @join__graph(name: String!, url: String!) on ENUM_VALUE
+
+directive @join__implements(graph: join__Graph!, interface: String!) repeatable on OBJECT | INTERFACE
+
+directive @join__type(graph: join__Graph!, key: join__FieldSet, extension: Boolean! = false, resolvable: Boolean! = true) repeatable on OBJECT | INTERFACE | UNION | ENUM | INPUT_OBJECT | SCALAR
+
+directive @link(url: String, as: String, for: link__Purpose, import: [link__Import]) repeatable on SCHEMA
+
+type Article
+  @join__type(graph: ARTICLE, key: "id")
+  @join__type(graph: SEARCH, key: "id")
+{
+  id: String!
+  body: String! @join__field(graph: ARTICLE)
+}
+
+type ArticleNotFound
+  @join__type(graph: ARTICLE, key: "id")
+{
+  id: String!
+  message: String!
+}
+
+union ArticleResponse
+  @join__type(graph: ARTICLE)
+ = Article | ArticleNotFound
+
+type Car
+  @join__type(graph: CAR, key: "id")
+  @join__type(graph: SEARCH, key: "id")
+{
+  id: String!
+  manufacturer: String! @join__field(graph: CAR)
+  model: String! @join__field(graph: CAR)
+}
+
+type CarNotFound
+  @join__type(graph: CAR, key: "id")
+{
+  id: String!
+  message: String!
+}
+
+union CarResponse
+  @join__type(graph: CAR)
+ = Car | CarNotFound
+
+scalar join__FieldSet
+
+enum join__Graph {
+  ARTICLE @join__graph(name: "article", url: "http://localhost:7001/graphql")
+  CAR @join__graph(name: "car", url: "http://localhost:7002/graphql")
+  SEARCH @join__graph(name: "search", url: "http://localhost:7003/graphql")
+}
+
+scalar link__Import
+
+enum link__Purpose {
+  """
+  `SECURITY` features provide metadata necessary to securely resolve fields.
+  """
+  SECURITY
+
+  """
+  `EXECUTION` features provide metadata necessary for operation execution.
+  """
+  EXECUTION
+}
+
+type Query
+  @join__type(graph: ARTICLE)
+  @join__type(graph: CAR)
+  @join__type(graph: SEARCH)
+{
+  article(id: String!): ArticleResponse! @join__field(graph: ARTICLE)
+  car(id: String!): CarResponse! @join__field(graph: CAR)
+  search(term: String!): SearchResponse! @join__field(graph: SEARCH)
+}
+
+type SearchError
+  @join__type(graph: SEARCH)
+{
+  message: String!
+}
+
+union SearchResponse
+  @join__type(graph: SEARCH)
+ = SearchSuccess | SearchError
+
+union SearchResults
+  @join__type(graph: SEARCH)
+ = Car | Article
+
+type SearchSuccess
+  @join__type(graph: SEARCH)
+{
+  total: Int!
+  items: [SearchResults!]!
+}

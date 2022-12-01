@@ -1,0 +1,19 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0",
+        import: ["@key", "@shareable"])
+        
+type Article @key(fields: "id") {
+    id: String!
+    body: String!
+}
+
+type ArticleNotFound @key(fields: "id") {
+    id: String!
+    message: String!
+}
+
+union ArticleResponse = Article | ArticleNotFound
+
+type Query {
+    article(id: String!): ArticleResponse!
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "car-1",
+    "manufacturer": "Audi",
+    "model": "R8"
+  },
+  {
+    "id": "car-2",
+    "manufacturer": "Porsche",
+    "model": "911"
+  },
+  {
+    "id": "car-3",
+    "manufacturer": "BMW",
+    "model": "M5"
+  },
+  {
+    "id": "car-4",
+    "manufacturer": "Ferrari",
+    "model": "F40"
+  },
+  {
+    "id": "car-5",
+    "manufacturer": "Lamborghini",
+    "model": "Huracan"
+  }
+]

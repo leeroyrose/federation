@@ -1,0 +1,14 @@
+federation_version: 2
+subgraphs:
+  article:
+    routing_url: http://localhost:7001/graphql
+    schema:
+      file: ./graphs/article/assets/article.graphql
+  car:
+    routing_url: http://localhost:7002/graphql
+    schema:
+      file: ./graphs/car/assets/car.graphql
+  search:
+    routing_url: http://localhost:7003/graphql
+    schema:
+      file: ./graphs/search/assets/search.graphql

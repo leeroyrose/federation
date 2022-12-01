@@ -1,0 +1,28 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0",
+        import: ["@key", "@shareable"])
+
+type Car @key(fields: "id") {
+    id: String!
+}
+
+type Article @key(fields: "id") {
+    id: String!
+}
+
+union SearchResults = Car | Article
+
+type SearchSuccess {
+    total: Int!
+    items: [SearchResults!]!
+}
+
+type SearchError {
+    message: String!
+}
+
+union SearchResponse = SearchSuccess | SearchError
+
+type Query {
+    search(term: String!): SearchResponse!
+}

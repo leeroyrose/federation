@@ -1,0 +1,20 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0",
+        import: ["@key", "@shareable"])
+
+type Car @key(fields: "id") {
+    id: String!
+    manufacturer: String!
+    model: String!
+}
+
+type CarNotFound @key(fields: "id") {
+    id: String!
+    message: String!
+}
+
+union CarResponse = Car | CarNotFound
+
+type Query {
+    car(id: String!): CarResponse!
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "car-1",
+    "type": "Car"
+  },
+  {
+    "id": "car-2",
+    "type": "Car"
+  },
+
+  {
+    "id": "article-1",
+    "type": "Article"
+  },
+  {
+    "id": "article-2",
+    "type": "Article"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "car-1",
+    "type": "Car"
+  },
+  {
+    "id": "car-2",
+    "type": "Car"
+  },
+  {
+    "id": "car-3",
+    "type": "Car"
+  },
+  {
+    "id": "car-4",
+    "type": "Car"
+  },
+  {
+    "id": "car-5",
+    "type": "Car"
+  },
+  {
+    "id": "car-6",
+    "type": "Car"
+  },
+  {
+    "id": "article-1",
+    "type": "Article"
+  },
+  {
+    "id": "article-2",
+    "type": "Article"
+  },
+  {
+    "id": "article-3",
+    "type": "Article"
+  },
+  {
+    "id": "article-4",
+    "type": "Article"
+  },
+  {
+    "id": "article-5",
+    "type": "Article"
+  },
+  {
+    "id": "article-6",
+    "type": "Article"
+  }
+]
